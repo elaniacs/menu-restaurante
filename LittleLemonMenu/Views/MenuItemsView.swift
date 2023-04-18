@@ -14,55 +14,39 @@ struct MenuItemsView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                ScrollView {
-                    LazyVGrid(columns: columns, spacing: 20) {
-                        Section(header: Text("Food").textCase(nil)) {
-                            ForEach(menuView.foodMenuItems) { item in
-                                VStack {
-                                    Rectangle()
-                                        .fill(Color.black)
-                                        .frame(width: 100, height: 100)
-                                        .cornerRadius(10)
-                                    Text(item.title)
-                                        .fontWeight(.medium)
-                                        .foregroundColor(.black)
-                                        .padding(.top, 10)
-                                }
-                                
-                            }
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 20) {
+                    Section(header:Text("Food")
+                        .padding(.leading, -170)
+                        .font(.title2)
+                        .fontWeight(.medium)
+                    )
+                    {
+                        ForEach(menuView.foodMenuItems) { item in
+                            GridView(item: item)
+                            
                         }
-                        
-                        Section(header: Text("Drink")) {
-                            ForEach(menuView.drinksMenuItems) { item in
-                                VStack {
-                                    Rectangle()
-                                        .fill(Color.black)
-                                        .frame(width: 100, height: 100)
-                                        .cornerRadius(10)
-                                    Text(item.title)
-                                        .fontWeight(.medium)
-                                        .foregroundColor(.black)
-                                        .padding(.top, 10)
-                                }
-                                
-                            }
+                    }
+                    
+                    Section(header: Text("Drink")
+                        .padding(.leading, -170)
+                        .font(.title2)
+                        .fontWeight(.medium)
+                    ) {
+                        ForEach(menuView.drinksMenuItems) { item in
+                            GridView(item: item)
+                            
                         }
-                        
-                        Section(header: Text("Dessert")) {
-                            ForEach(menuView.dessertsMenuItems) { item in
-                                VStack {
-                                    Rectangle()
-                                        .fill(Color.black)
-                                        .frame(width: 100, height: 100)
-                                        .cornerRadius(10)
-                                    Text(item.title)
-                                        .fontWeight(.medium)
-                                        .foregroundColor(.black)
-                                        .padding(.top, 10)
-                                }
-                                
-                            }
+                    }
+                    
+                    Section(header: Text("Dessert")
+                        .padding(.leading, -170)
+                        .font(.title2)
+                        .fontWeight(.medium)
+                    ) {
+                        ForEach(menuView.dessertsMenuItems) { item in
+                            GridView(item: item)
+                            
                         }
                     }
                 }
@@ -84,9 +68,32 @@ struct MenuItemsView: View {
     }
 }
 
+struct GridView: View {
+    
+    let item: MenuItem
+    
+    var body: some View {
+        
+        NavigationLink(destination: MenuItemDetailsView(item: item)) {
+            VStack {
+                Rectangle()
+                    .fill(Color.blue)
+                    .frame(width: 100, height: 100)
+                    .cornerRadius(10)
+                Text(item.title)
+                    .fontWeight(.medium)
+                    .foregroundColor(.black)
+                    .padding(.top, 10)
+            }
+        }
+        
+    }
+}
+
 
 struct MenuItemsView_Previews: PreviewProvider {
     static var previews: some View {
         MenuItemsView(menuView: MenuViewViewModel())
     }
 }
+

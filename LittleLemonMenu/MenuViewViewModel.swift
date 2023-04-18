@@ -10,15 +10,24 @@ import Foundation
 
 class MenuViewViewModel: ObservableObject {
     
-    @Published var foodMenuItems : [MenuItem] = (1...12).map { index in
-        MenuItem(title: "Food \(index)", priceDouble: Double.random(in: 5.0...15.0), menuCategory: .food, ordersCount: 0,  priceInt: Int.random(in: 4...16), ingredients: [Ingredient.allCases.randomElement()!])
+    lazy var foodMenuItems : [MenuItem] = (1...12).map { index in
+        MenuItem(title: "Food \(index)", priceDouble: Double.random(in: 5.0...15.0), menuCategory: .food, ordersCount: Int.random(in: 1...4),  priceInt: Int.random(in: 4...16), ingredients: mockListIngredients())
     }
 
-    @Published var drinksMenuItems : [MenuItem] = (1...8).map { index in
-        MenuItem(title: "Drink \(index)", priceDouble: Double.random(in: 5.0...15.0), menuCategory: .drink, ordersCount: 0,  priceInt: Int.random(in: 4...16), ingredients: [Ingredient.allCases.randomElement()!])
+    lazy var drinksMenuItems : [MenuItem] = (1...8).map { index in
+        MenuItem(title: "Drink \(index)", priceDouble: Double.random(in: 5.0...15.0), menuCategory: .drink, ordersCount: Int.random(in: 1...4),  priceInt: Int.random(in: 4...16), ingredients: mockListIngredients())
     }
 
-    @Published var dessertsMenuItems : [MenuItem] = (1...4).map { index in
-        MenuItem(title: "Dessert \(index)", priceDouble: Double.random(in: 5.0...15.0), menuCategory: .dessert, ordersCount: 0,  priceInt: Int.random(in: 4...16), ingredients: [Ingredient.allCases.randomElement()!])
+     lazy var dessertsMenuItems : [MenuItem] = (1...4).map { index in
+        MenuItem(title: "Dessert \(index)", priceDouble: Double.random(in: 5.0...15.0), menuCategory: .dessert, ordersCount: 0,  priceInt: Int.random(in: 4...16), ingredients: mockListIngredients())
+    }
+    
+    func mockListIngredients() -> [Ingredient] {
+        let random = Int.random(in: 1...4)
+        var arrayIngredients = [Ingredient]()
+        for _ in 1...random {
+            arrayIngredients.append(Ingredient.allCases.randomElement()!)
+        }
+        return arrayIngredients
     }
 }

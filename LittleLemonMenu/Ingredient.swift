@@ -8,6 +8,7 @@
 import Foundation
 
 enum Ingredient: String, CaseIterable {
+    
     case a = "Spinach"
     case b = "Broccoli"
     case c = "Carrot"

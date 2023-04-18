@@ -31,5 +31,16 @@ struct MenuItem: Identifiable, MenuItemProtocol {
     var priceInt: Int
     
     var ingredients: [Ingredient]
+    
+    func priceDoubleFormatter() -> String {
+        let formatter = NumberFormatter()
+        
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 2
+        formatter.maximumFractionDigits = 2
+        let formattedNumber = formatter.string(from: NSNumber(value: priceDouble)) ?? ""
+        
+        return formattedNumber
+    }
 }
 
