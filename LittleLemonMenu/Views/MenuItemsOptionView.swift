@@ -10,7 +10,7 @@ import SwiftUI
 enum SelectedCategories: String, CaseIterable {
     case food = "Food"
     case drink = "Drink"
-    case desdert = "Dedsert"
+    case dessert = "Dessert"
 }
 
 enum MenuSortingOptions: String, CaseIterable {
@@ -20,23 +20,33 @@ enum MenuSortingOptions: String, CaseIterable {
 }
 
 struct MenuItemsOptionView: View {
-   
-    var body: some View {
-        VStack {
-            List {
-                Section(header: Text("Selected Categories")) {
-                    ForEach(SelectedCategories.allCases, id: \.self) { category in
-                        Text(category.rawValue)
-                    }
-                }
+    @Environment(\.presentationMode) var presentationMode
     
-                Section(header: Text("Menu Sorting Options")) {
-                    ForEach(MenuSortingOptions.allCases, id: \.self) { option in
-                        Text(option.rawValue)
+    var body: some View {
+        NavigationView {
+            VStack {
+                List {
+                    Section(header: Text("Selected Categories")) {
+                        ForEach(SelectedCategories.allCases, id: \.self) { category in
+                            Text(category.rawValue)
+                        }
+                    }
+        
+                    Section(header: Text("Sort by")) {
+                        ForEach(MenuSortingOptions.allCases, id: \.self) { option in
+                            Text(option.rawValue)
+                        }
                     }
                 }
             }
             .navigationTitle("Filter")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Done") {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                }
+            }
         }
     }
 }

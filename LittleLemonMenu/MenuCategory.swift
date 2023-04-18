@@ -10,5 +10,6 @@ import Foundation
 enum MenuCategory: String {
         case food = "Food"
         case drink = "Drink"
-        case desert = "Dessert"
+        case dessert = "Dessert"
 }
+
