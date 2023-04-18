@@ -10,27 +10,59 @@ import SwiftUI
 struct MenuItemsView: View {
     @State private var showMenuItemsOptions = false
     @ObservedObject var menuView: MenuViewViewModel
-    let columns = [GridItem(.flexible()), GridItem(.flexible())]
+    let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
         NavigationView {
             VStack {
-                List {
-                    Section(header: Text("Food")) {
-                        ForEach(menuView.foodMenuItems) { item in
-                            Text(item.title)
+                ScrollView {
+                    LazyVGrid(columns: columns, spacing: 20) {
+                        Section(header: Text("Food").textCase(nil)) {
+                            ForEach(menuView.foodMenuItems) { item in
+                                VStack {
+                                    Rectangle()
+                                        .fill(Color.black)
+                                        .frame(width: 100, height: 100)
+                                        .cornerRadius(10)
+                                    Text(item.title)
+                                        .fontWeight(.medium)
+                                        .foregroundColor(.black)
+                                        .padding(.top, 10)
+                                }
+                                
+                            }
                         }
-                    }
-                    
-                    Section(header: Text("Drink")) {
-                        ForEach(menuView.drinksMenuItems) { item in
-                            Text(item.title)
+                        
+                        Section(header: Text("Drink")) {
+                            ForEach(menuView.drinksMenuItems) { item in
+                                VStack {
+                                    Rectangle()
+                                        .fill(Color.black)
+                                        .frame(width: 100, height: 100)
+                                        .cornerRadius(10)
+                                    Text(item.title)
+                                        .fontWeight(.medium)
+                                        .foregroundColor(.black)
+                                        .padding(.top, 10)
+                                }
+                                
+                            }
                         }
-                    }
-                    
-                    Section(header: Text("Dessert")) {
-                        ForEach(menuView.drinksMenuItems) { item in
-                            Text(item.title)
+                        
+                        Section(header: Text("Dessert")) {
+                            ForEach(menuView.dessertsMenuItems) { item in
+                                VStack {
+                                    Rectangle()
+                                        .fill(Color.black)
+                                        .frame(width: 100, height: 100)
+                                        .cornerRadius(10)
+                                    Text(item.title)
+                                        .fontWeight(.medium)
+                                        .foregroundColor(.black)
+                                        .padding(.top, 10)
+                                }
+                                
+                            }
                         }
                     }
                 }

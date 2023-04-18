@@ -7,10 +7,11 @@
 
 import Foundation
 
-enum Ingredient: String {
-    case spinach = "Spinach"
-    case broccoli = "Broccoli"
-    case carrot = "Carrot"
-    case pasta = "Pasta"
-    case tomatoSauce = "Tomato sauce"
+enum Ingredient: String, CaseIterable {
+    case a = "Spinach"
+    case b = "Broccoli"
+    case c = "Carrot"
+    case d = "Pasta"
+    case e = "Tomato sauce"
 }
+
