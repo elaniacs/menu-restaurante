@@ -30,6 +30,7 @@ struct MenuItemDetailsView: View {
             VStack {
                 Text("Ingredients:").bold()
                 Text(item.ingredients.map { $0.rawValue }.joined(separator: "\n"))
+                    
                
             }
             Spacer()
