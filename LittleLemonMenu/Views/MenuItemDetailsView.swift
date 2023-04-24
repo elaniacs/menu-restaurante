@@ -41,6 +41,6 @@ struct MenuItemDetailsView: View {
 
 struct MenuItemDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        MenuItemDetailsView(item: MenuItem(title: "Previews", priceDouble: 0.0, menuCategory: .food, ordersCount: 1, priceInt: 0, ingredients: [.a, .b]))
+        MenuItemDetailsView(item: MenuItem(title: "Previews", priceDouble: 0.0, menuCategory: .food, ordersCount: 1, priceInt: 0, ingredients: [.spinachi, .broccoli]))
     }
 }

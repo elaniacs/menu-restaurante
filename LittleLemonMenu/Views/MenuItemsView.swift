@@ -86,7 +86,7 @@ struct GridView: View {
                     .padding(.top, 10)
             }
         }
-        
+         
     }
 }
 
