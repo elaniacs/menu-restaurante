@@ -8,10 +8,13 @@
 import SwiftUI
 
 @main
-struct LittleLemonMenuApp: App {
+struct M4ExerciseApp: App {
+    let persistenceController = PersistenceController.shared
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView().environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }
+
