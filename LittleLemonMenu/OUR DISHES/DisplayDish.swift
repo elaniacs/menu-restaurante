@@ -15,8 +15,31 @@ struct DisplayDish: View {
     }
     
     var body: some View {
-        EmptyView()
-        .contentShape(Rectangle()) // keep this code
+        VStack(alignment: .leading) {
+            HStack {
+                Text(dish.name ?? "")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+                    .padding(.leading)
+                Spacer()
+                Text(String(format: "$%.2f", dish.price))
+                    .font(.caption)
+                    .foregroundColor(.gray)
+                    .padding(.trailing)
+            }
+            Text(dish.size ?? "")
+                .font(.subheadline)
+                .foregroundColor(.black)
+                .padding(.leading)
+                .padding(.top, 5)
+            Spacer()
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color.white)
+        .cornerRadius(10)
+        .shadow(radius: 5)
+        .contentShape(Rectangle())
     }
 }
 
