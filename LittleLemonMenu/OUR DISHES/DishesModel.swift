@@ -17,19 +17,20 @@ class DishesModel: ObservableObject {
     
     func reload(_ coreDataContext:NSManagedObjectContext) async {
         let url = URL(string: "https://raw.githubusercontent.com/Meta-Mobile-Developer-PC/Working-With-Data-API/main/littleLemonSimpleMenu.json")!
-        let urlSession = URLSession.shared
         
+        let request = URLRequest(url: url)
+        let session = URLSession.shared
         do {
-            let (data, _) = try await urlSession.data(from: url)
-            let fullMenu = try JSONDecoder().decode([JSONMenu].self, from: data)
-            menuItems = fullMenu.flatMap { $0.menu }
-            
+            let data: (data: Data, any: Any) = try await session.data(for: request)
+            let fullMenu = try JSONDecoder().decode(JSONMenu.self, from: data.data)
+            menuItems = fullMenu.menu
             
             // populate Core Data
             Dish.deleteAll(coreDataContext)
             try Dish.createDishesFrom(menuItems:menuItems, coreDataContext)
+        } catch {
+            print(error)
         }
-        catch { }
     }
 }
 

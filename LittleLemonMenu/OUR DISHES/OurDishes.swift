@@ -79,11 +79,6 @@ struct OurDishes: View {
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
         return [sortDescriptor]
     }
-
-
-    
-    
-
 }
 
 struct OurDishes_Previews: PreviewProvider {
