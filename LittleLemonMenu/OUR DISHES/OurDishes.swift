@@ -65,6 +65,16 @@ struct OurDishes: View {
             
         }
     }
+    
+    func buildPredicate(for searchText: String) -> NSPredicate {
+        if searchText.isEmpty {
+            return NSPredicate(value: true)
+        } else {
+            let predicateFormat = "name CONTAINS[cd] %@"
+            return NSPredicate(format: predicateFormat, searchText)
+        }
+    }
+
 }
 
 struct OurDishes_Previews: PreviewProvider {
