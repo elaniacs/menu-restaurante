@@ -32,19 +32,19 @@ struct OurDishes: View {
             
             NavigationView {
                 FetchedObjects(
-                    predicate: buildPredicate(),
+                    predicate: buildPredicate(for: searchText),
                     sortDescriptors: buildSortDescriptors()) {
                         (dishes: [Dish]) in
                         List {
                             ForEach(dishes) { dish in
-                                DisplayDish(dish: dish)
+                                DisplayDish(dish)
                                     .onTapGesture {
                                         showAlert.toggle()
                                     }
                             }
                             
                         }
-                        // add the search bar modifier here
+                        .searchable(text: $searchText)
                     }
             }
             
@@ -74,6 +74,15 @@ struct OurDishes: View {
             return NSPredicate(format: predicateFormat, searchText)
         }
     }
+    
+    func buildSortDescriptors() -> [NSSortDescriptor] {
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.localizedCaseInsensitiveCompare(_:)))
+        return [sortDescriptor]
+    }
+
+
+    
+    
 
 }
 
