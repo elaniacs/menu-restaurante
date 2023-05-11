@@ -21,8 +21,8 @@ class DishesModel: ObservableObject {
         
         do {
             let (data, _) = try await urlSession.data(from: url)
-            // let fullMenu = try JSONDecoder().decode(...)
-            // menuItems = ...
+            let fullMenu = try JSONDecoder().decode([JSONMenu].self, from: data)
+            menuItems = fullMenu.flatMap { $0.menu }
             
             
             // populate Core Data
@@ -63,5 +63,6 @@ extension URLSession {
         return self.codableTask(with: url, completionHandler: completionHandler)
     }
 }
+
 
 
