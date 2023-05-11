@@ -32,21 +32,22 @@ struct OurDishes: View {
             
             NavigationView {
                 FetchedObjects(
-                    predicate:buildPredicate(),
+                    predicate: buildPredicate(),
                     sortDescriptors: buildSortDescriptors()) {
                         (dishes: [Dish]) in
                         List {
-                            // Code for the list enumeration here
+                            ForEach(dishes) { dish in
+                                DisplayDish(dish: dish)
+                                    .onTapGesture {
+                                        showAlert.toggle()
+                                    }
+                            }
+                            
                         }
                         // add the search bar modifier here
                     }
             }
             
-            // SwiftUI has this space between the title and the list
-            // that is amost impossible to remove without incurring
-            // into complex steps that run out of the scope of this
-            // course, so, this is a hack, to bring the list up
-            // try to comment this line and see what happens.
             .padding(.top, -10)//
             
             .alert("Order placed, thanks!",

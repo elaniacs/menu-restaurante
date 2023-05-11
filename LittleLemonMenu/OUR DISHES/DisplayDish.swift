@@ -23,7 +23,7 @@ struct DisplayDish: View {
                     .foregroundColor(.black)
                     .padding(.leading)
                 Spacer()
-                Text(String(format: "$%.2f", dish.price))
+                Text(dish.formatPrice())
                     .font(.caption)
                     .foregroundColor(.gray)
                     .padding(.trailing)
