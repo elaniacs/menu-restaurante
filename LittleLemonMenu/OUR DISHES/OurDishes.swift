@@ -57,12 +57,6 @@ struct OurDishes: View {
             
             // makes the list background invisible, default is gray
                    .scrollContentBackground(.hidden)
-            
-            // runs when the view appears
-                   .task {
-                       await dishesModel.reload(viewContext)
-                   }
-            
         }
     }
     

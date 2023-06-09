@@ -18,7 +18,7 @@ struct DisplayDish: View {
         VStack(alignment: .leading) {
             HStack {
                 Text(dish.name ?? "")
-                    .font(.title)
+                    .font(.body)
                     .fontWeight(.bold)
                     .foregroundColor(.black)
                     .padding(.leading)
@@ -28,18 +28,9 @@ struct DisplayDish: View {
                     .foregroundColor(.gray)
                     .padding(.trailing)
             }
-            Text(dish.size ?? "")
-                .font(.subheadline)
-                .foregroundColor(.black)
-                .padding(.leading)
-                .padding(.top, 5)
-            Spacer()
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(Color.white)
-        .cornerRadius(10)
-        .shadow(radius: 5)
-        .contentShape(Rectangle())
     }
 }
 
